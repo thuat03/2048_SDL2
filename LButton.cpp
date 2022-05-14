@@ -100,7 +100,7 @@ void LButton::free() {
 }
 
 void LButton::freeStatus() {
-	mCurrentSprite = BUTTON_SPRITE_MOUSE_OVER_MOTION;
+	mCurrentSprite = BUTTON_SPRITE_MOUSE_OUT;
 }
 
 LButtonSprite LButton::getStatus() {
