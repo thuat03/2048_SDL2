@@ -5,7 +5,7 @@ void setup() {
 	init(window, renderer);
 
 	loadFont(gFont);
-
+	
 	loadPicture(gTexture, renderer);
 
 	loadSound(gMusic);
@@ -16,8 +16,8 @@ void setup() {
 	setupButton(gButton[CONTINUE_MENU], "Continue", 50, 375, renderer, gFont);
 	setupButton(gButton[CONTINUE_GAMEPLAY], "Continue", 50, 150, renderer, gFont);
 	setupButton(gButton[SAVE_AND_EXIT], "Save and exit", 50, 225, renderer, gFont);
-	setupButton(gButton[MUSIC_ON], "Music: On", 50, 300, renderer, gFont);
-	setupButton(gButton[MUSIC_OFF], "Music: Off", 50, 300, renderer, gFont);
+	setupButton(gButton[MUSIC_ON], "SFX: On", 50, 300, renderer, gFont);
+	setupButton(gButton[MUSIC_OFF], "SFX: Off", 50, 300, renderer, gFont);
 
 	setPositionOfPicture(picture);
 
