@@ -172,6 +172,7 @@ std::string main_menu()
 			if (settings.music) {
 				Mix_PlayChannel(-1, gMusic, 0);
 			}
+			SDL_Delay(500);
 			return "quit";
 		}
 
@@ -401,6 +402,7 @@ std::string pause()
 			if (settings.music) {
 				Mix_PlayChannel(-1, gMusic, 0);
 			}
+			SDL_Delay(500);
 			saveMatrix(data);
 			saveScore(score, "2048_Data/current score.txt");
 			return "quit";
@@ -453,6 +455,7 @@ std::string win()
 			if (settings.music) {
 				Mix_PlayChannel(-1, gMusic, 0);
 			}
+			SDL_Delay(500);
 			return "quit";
 		}
 
@@ -503,6 +506,7 @@ std::string lose()
 			if (settings.music) {
 				Mix_PlayChannel(-1, gMusic, 0);
 			}
+			SDL_Delay(500);
 			return "quit";
 		}
 
