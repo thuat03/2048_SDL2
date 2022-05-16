@@ -39,3 +39,7 @@ https://www.chosic.com/download-audio/29514/
 -Đồ họa, âm thanh game tạm chấp nhận được 
 
 -Em xin tự đánh giá dự án của mình được 9 điểm.
+
+-Dự án này em hoàn toàn tự làm và không có sao chép ở bất kì đâu
+
+-Link video test: https://youtu.be/tDV__1oGerc
