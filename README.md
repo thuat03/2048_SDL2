@@ -1,39 +1,40 @@
 # 2048_SDL2
 
-Luật chơi: Nhấn các phím W,A,S,D để di chuyển các ô giống nhau thành ô có trị số cao hơn (bàn cờ 4x4)
-
-Điều kiện thắng: Có 1 ô đạt 2048
-
-Điều kiện thua: Không thể di chuyển tiếp
-
 ***
 
-Phiên bản 0.1
+1. Giới thiệu
 
-Cập nhật SDL
+-Đồ họa em dùng là SDL2. Em học ở https://lazyfoo.net/tutorials/SDL/index.php
 
-***
+-Hình ảnh em lấy trên mạng và cắt ghép
 
-Phiên bản 0.2
+-Âm thanh em lấy ở https://www.chosic.com/download-audio/29771/
+                  
+                   https://www.chosic.com/download-audio/29514/
+                   
 
-Thêm highscore
+2. Cách chơi & luật chơi
 
-***
+2.1 Cách chơi.
 
-Phiên bản 0.3
+-Người chơi nhấn các phím W,A,S,D để di chuyển các ô số trên ma trận 4x4 để ghép 2 ô có giá trị giống nhau thành ô có giá trị gấp đôi
 
-Thêm main menu, win menu, exit menu
+2.2 Luật chơi.
 
-Cải tiến code
+-Điều kiện thắng: Có 1 ô đạt 2048
 
-***
+-Điều kiện thua: Bàn cờ 4x4 bị lấp đầy và không thể di chuyển được nữa
 
-Phiên bản 0.4
+3. Thuật toán của game
 
-Thêm save dữ liệu 
+-Đầu tiên, spawn ra 1 giá trị bất kì, sau đó người chơi đi 1 nước
 
-Thêm bật/ tắt hiệu ứng âm thanh
+-Sau khi người chơi đi 1 nước, spawn ra thêm 1 giá trị tiếp 
 
-Cải tiến code sang tư duy trạng thái
+-Để check xem người chơi còn có thể di chuyển được nữa hay không, trước tiên em check xem ma trận đã đầy hay chưa, nếu đầy rồi thì duyệt cả ma trận với 2 ô liền kề nhau (ngang, dọc). Nếu duyệt cả bàn cờ mà không có 2 ô nào có giá trị bằng nhau thì người chơi thua.
 
-Thêm ít chức năng và âm nhạc
+4. Nhận xét
+
+-Đồ họa, âm thanh game tạm chấp nhận được 
+
+-Em xin tự đánh giá dự án của mình được 8,5 điểm.
