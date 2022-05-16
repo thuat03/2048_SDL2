@@ -38,4 +38,4 @@ https://www.chosic.com/download-audio/29514/
 
 -Đồ họa, âm thanh game tạm chấp nhận được 
 
--Em xin tự đánh giá dự án của mình được 8,5 điểm.
+-Em xin tự đánh giá dự án của mình được 9 điểm.
