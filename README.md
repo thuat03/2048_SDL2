@@ -36,4 +36,4 @@ Thêm bật/ tắt hiệu ứng âm thanh
 
 Cải tiến code sang tư duy trạng thái
 
-Thêm ít chức năng và âm 
+Thêm ít chức năng và âm nhạc
