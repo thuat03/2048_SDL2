@@ -32,7 +32,7 @@ https://www.chosic.com/download-audio/29514/
 
 -Sau khi người chơi đi 1 nước, spawn ra thêm 1 giá trị tiếp 
 
--Để check xem người chơi còn có thể di chuyển được nữa hay không, trước tiên em check xem ma trận đã đầy hay chưa, nếu đầy rồi thì duyệt cả ma trận với 2 ô liền kề nhau (ngang, dọc). Nếu duyệt cả bàn cờ mà không có 2 ô nào có giá trị bằng nhau thì người chơi thua.
+-Để check xem người chơi còn có thể di chuyển được nữa hay không, trước tiên em check xem ma trận đã đầy hay chưa, nếu đầy rồi thì duyệt cả ma trận với từng cặp 2 ô liền kề nhau (ngang, dọc). Nếu duyệt cả bàn cờ mà không có 2 ô nào có giá trị bằng nhau thì người chơi thua.
 
 # 4. Nhận xét
 
