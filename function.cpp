@@ -133,9 +133,16 @@ void saveMatrix(int** matrix) {
 	saveData.close();
 }
 
-void loadSound(Mix_Chunk*& gMusic) {
+void loadSound(Mix_Chunk*& gSFX) {
 	//Load sound effect
-	gMusic = Mix_LoadWAV("2048_Data/sound.wav");
+	gSFX = Mix_LoadWAV("2048_Data/sfx.wav");
+	if (gSFX == NULL) {
+		std::cout << "Unable to load sound effect!" << SDL_GetError() << std::endl;
+	}
+}
+
+void loadMusic(Mix_Music*& gMusic, const char* path) {
+	gMusic = Mix_LoadMUS(path);
 	if (gMusic == NULL) {
 		std::cout << "Unable to load music!" << SDL_GetError() << std::endl;
 	}
@@ -225,9 +232,13 @@ void freeTexture(LTexture& renderTexture) {
 	renderTexture.free();
 }
 
-void freeSoundEffects(Mix_Chunk*& gMusic) {
+void freeSoundEffects(Mix_Chunk*& gSFX) {
 	//Free the sound effects
-	Mix_FreeChunk(gMusic);
+	Mix_FreeChunk(gSFX);
+	gSFX = NULL;
+}
+void freeMusic(Mix_Music*& gMusic) {
+	Mix_FreeMusic(gMusic);
 	gMusic = NULL;
 }
 

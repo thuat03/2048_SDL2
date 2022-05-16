@@ -6,7 +6,11 @@ SDL_Renderer* renderer = NULL;
 
 TTF_Font* gFont = NULL;
 
-Mix_Chunk* gMusic = NULL;
+Mix_Chunk* gSFX = NULL;
+
+Mix_Music* gMusicMenu = NULL;
+
+Mix_Music* gMusicGamePlay = NULL;
 
 std::fstream HighScore("2048_Data/highscore.txt");
 

@@ -20,7 +20,9 @@ void saveScore(const int& highscore, const std::string& path);
 
 void saveMatrix(int** matrix);
 
-void loadSound(Mix_Chunk*& gMusic);
+void loadSound(Mix_Chunk*& gSFX);
+
+void loadMusic(Mix_Music*& gMusic, const char* path);
 
 void setPositionOfPicture(SDL_Rect* picure);
 
@@ -30,7 +32,9 @@ void freeButtons(LButton& button);
 
 void freeTexture(LTexture& renderTexture);
 
-void freeSoundEffects(Mix_Chunk*& gMusic);
+void freeSoundEffects(Mix_Chunk*& gSFX);
+
+void freeMusic(Mix_Music*& gMusic);
 
 void freeFont(TTF_Font*& gFont);
 

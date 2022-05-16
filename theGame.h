@@ -33,6 +33,14 @@ int TheGame::getStatusPresent() {
 }
 
 void TheGame::updateStatus() {
+	if (this->status_next == "menu") {
+		if (this->status == PAUSE_STATUS || this->status == WIN_STATUS || this->status == LOSE_STATUS) {
+			isDataEmpty = true;
+			this->status = MAIN_MENU_STATUS;
+		}
+		return;
+	}
+
 	if (this->status_next == "start") {
 		if (this->status == MAIN_MENU_STATUS) {
 			setupGame();
@@ -40,6 +48,7 @@ void TheGame::updateStatus() {
 		}
 		return;
 	}
+
 	if (this->status_next == "continue_saveGame") {
 		if (this->status == MAIN_MENU_STATUS) {
 			
@@ -47,30 +56,35 @@ void TheGame::updateStatus() {
 			this->status = GAME_PLAY_STATUS;
 		}
 	}
+
 	if (this->status_next == "win") {
 		if (this->status == GAME_PLAY_STATUS) {
 			this->status = WIN_STATUS;
 		}
 		return;
 	}
+
 	if (this->status_next == "lose") {
 		if (this->status == GAME_PLAY_STATUS) {
 			this->status = LOSE_STATUS;
 		}
 		return;
 	}
+
 	if (this->status_next == "pause") {
 		if (this->status == GAME_PLAY_STATUS) {
 			this->status = PAUSE_STATUS;
 		}
 		return;
 	}
+
 	if (this->status_next == "continue") {
 		if (this->status == PAUSE_STATUS) {
 			this->status = GAME_PLAY_STATUS;
 		}
 		return;
 	}
+
 	if (this->status_next == "again") {
 		if (this->status == WIN_STATUS || this->status == LOSE_STATUS) {
 			setupGame();
@@ -78,6 +92,7 @@ void TheGame::updateStatus() {
 		}
 		return;
 	}
+
 	if (this->status_next == "quit") {
 		this->status = EXIT_STATUS;
 		return;
@@ -117,25 +132,39 @@ void TheGame::render() {
 std::string main_menu()
 {
 	SDL_Event e;
+	Mix_HaltMusic();
 	while (1) {
 
 		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_QUIT) {
 				return "quit";
 			}
-
+			if (Mix_PlayingMusic() == 0 && settings.music) {
+				Mix_PlayMusic(gMusicMenu, -1);
+			}
+			if (Mix_PlayingMusic() == 1 && !settings.music) {
+				Mix_HaltMusic();
+			}
 			SDL_RenderClear(renderer);
 
 			SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
 
 			gButton[START].handleEvent(&e);
 			gButton[EXIT].handleEvent(&e);
+			if (settings.sfx) {
+				gButton[SFX_ON].handleEvent(&e);
+			}
+			else {
+				gButton[SFX_OFF].handleEvent(&e);
+			}
+
 			if (settings.music) {
 				gButton[MUSIC_ON].handleEvent(&e);
 			}
 			else {
 				gButton[MUSIC_OFF].handleEvent(&e);
 			}
+
 			if (!isDataEmpty) {
 				gButton[CONTINUE_MENU].handleEvent(&e);
 			}
@@ -144,12 +173,20 @@ std::string main_menu()
 
 		gButton[START].render(renderer);
 		gButton[EXIT].render(renderer);
+		if (settings.sfx) {
+			gButton[SFX_ON].render(renderer);
+		}
+		else {
+			gButton[SFX_OFF].render(renderer);
+		}
+
 		if (settings.music) {
 			gButton[MUSIC_ON].render(renderer);
 		}
 		else {
 			gButton[MUSIC_OFF].render(renderer);
 		}
+
 		if (!isDataEmpty) {
 			gButton[CONTINUE_MENU].render(renderer);
 		}
@@ -160,25 +197,45 @@ std::string main_menu()
 		//Ấn vào start để bắt đầu 
 		if (gButton[START].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[START].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
+			Mix_HaltMusic();
 			return "start";
 		}
 
 		//Ấn vào exit để thoát 
 		if (gButton[EXIT].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[EXIT].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			SDL_Delay(500);
 			return "quit";
 		}
 
 		//
+		if (gButton[SFX_ON].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && settings.sfx) {
+			settings.sfx = false;
+
+			gButton[SFX_ON].freeStatus();
+		}
+
+		if (gButton[SFX_OFF].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && !settings.sfx) {
+
+			settings.sfx = true;
+
+			Mix_PlayChannel(-1, gSFX, 0);
+
+			gButton[SFX_OFF].freeStatus();
+		}
+		//
 		if (gButton[MUSIC_ON].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && settings.music) {
 			settings.music = false;
+
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
+			}
 
 			gButton[MUSIC_ON].freeStatus();
 		}
@@ -187,19 +244,22 @@ std::string main_menu()
 
 			settings.music = true;
 
-			Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
+			}
 
 			gButton[MUSIC_OFF].freeStatus();
 		}
 		//
 		if (!isDataEmpty) {
 			if (gButton[CONTINUE_MENU].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
-				if (settings.music) {
-					Mix_PlayChannel(-1, gMusic, 0);
+				if (settings.sfx) {
+					Mix_PlayChannel(-1, gSFX, 0);
 				}
 				getEqualArray(data_save, data);
 				getEqualArray(data_save, data);
 				score = loadFile(CurrentScore);
+				Mix_HaltMusic();
 				return "continue_saveGame";
 			}
 		}
@@ -240,8 +300,8 @@ std::string game_play()
 						if (isPossibleMove(data, data_check)) {
 
 							randomUpgrade(data);
-							if (settings.music) {
-								Mix_PlayChannel(-1, gMusic, 0);
+							if (settings.sfx) {
+								Mix_PlayChannel(-1, gSFX, 0);
 							}
 						}
 						break;
@@ -251,8 +311,8 @@ std::string game_play()
 						if (isPossibleMove(data, data_check)) {
 
 							randomUpgrade(data);
-							if (settings.music) {
-								Mix_PlayChannel(-1, gMusic, 0);
+							if (settings.sfx) {
+								Mix_PlayChannel(-1, gSFX, 0);
 							}
 						}
 						break;
@@ -262,8 +322,8 @@ std::string game_play()
 						if (isPossibleMove(data, data_check)) {
 
 							randomUpgrade(data);
-							if (settings.music) {
-								Mix_PlayChannel(-1, gMusic, 0);
+							if (settings.sfx) {
+								Mix_PlayChannel(-1, gSFX, 0);
 							}
 						}
 						break;
@@ -273,15 +333,15 @@ std::string game_play()
 						if (isPossibleMove(data, data_check)) {
 
 							randomUpgrade(data);
-							if (settings.music) {
-								Mix_PlayChannel(-1, gMusic, 0);
+							if (settings.sfx) {
+								Mix_PlayChannel(-1, gSFX, 0);
 							}
 						}
 						break;
 					}
 					case SDLK_ESCAPE: {
-						if (settings.music) {
-							Mix_PlayChannel(-1, gMusic, 0);
+						if (settings.sfx) {
+							Mix_PlayChannel(-1, gSFX, 0);
 						}
 						return "pause";
 					}
@@ -290,6 +350,14 @@ std::string game_play()
 				if (score > highscore) {
 					highscore = score;
 				}
+			}
+
+			if (Mix_PlayingMusic() == 0 && settings.music) {
+				Mix_PlayMusic(gMusicGamePlay, -1);
+			}
+
+			if (Mix_PlayingMusic() == 1 && !settings.music) {
+				Mix_HaltMusic();
 			}
 		}
 
@@ -340,11 +408,43 @@ std::string pause()
 			if (e.type == SDL_QUIT) {
 				return "quit";
 			}
+			if (e.key.repeat == 0 && e.type == SDL_KEYDOWN) {
+
+				switch (e.key.keysym.sym) {
+					case SDLK_ESCAPE:
+					{
+						SDL_RenderClear(renderer);
+						SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+						SDL_Delay(100);
+
+						if (settings.sfx) {
+							Mix_PlayChannel(-1, gSFX, 0);
+						}
+						Mix_HaltMusic();
+						return "menu";
+					}
+
+				}
+			}
+			if (Mix_PlayingMusic() == 0 && settings.music) {
+				Mix_PlayMusic(gMusicGamePlay, -1);
+			}
+
+			if (Mix_PlayingMusic() == 1 && !settings.music) {
+				Mix_HaltMusic();
+			}
 
 			SDL_RenderClear(renderer);
 
 			gButton[CONTINUE_GAMEPLAY].handleEvent(&e);
 			gButton[SAVE_AND_EXIT].handleEvent(&e);
+
+			if (settings.sfx) {
+				gButton[SFX_ON].handleEvent(&e);
+			}
+			else {
+				gButton[SFX_OFF].handleEvent(&e);
+			}
 
 			if (settings.music) {
 				gButton[MUSIC_ON].handleEvent(&e);
@@ -352,17 +452,19 @@ std::string pause()
 			else {
 				gButton[MUSIC_OFF].handleEvent(&e);
 			}
-			if (!isDataEmpty) {
-				gButton[CONTINUE_MENU].handleEvent(&e);
-			}
-
-
 		}
 
 		SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
 
 		gButton[CONTINUE_GAMEPLAY].render(renderer);
 		gButton[SAVE_AND_EXIT].render(renderer);
+
+		if (settings.sfx) {
+			gButton[SFX_ON].render(renderer);
+		}
+		else {
+			gButton[SFX_OFF].render(renderer);
+		}
 
 		if (settings.music) {
 			gButton[MUSIC_ON].render(renderer);
@@ -374,23 +476,45 @@ std::string pause()
 		renderTexture.loadFromRenderedText("Game Paused!", BLUE_COLOR, renderer, gFont);
 		renderTexture.render(25, 50, renderer);
 
+		//
+		if (gButton[SFX_ON].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && settings.sfx) {
+			settings.sfx = false;
+			gButton[SFX_ON].freeStatus();
+		}
+		if (gButton[SFX_OFF].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && !settings.sfx) {
+			settings.sfx = true;
+
+			Mix_PlayChannel(-1, gSFX, 0);
+
+			gButton[SFX_OFF].freeStatus();
+		}
+		//
+		
 		if (gButton[MUSIC_ON].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && settings.music) {
 			settings.music = false;
+
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
+			}
+
 			gButton[MUSIC_ON].freeStatus();
 		}
+
 		if (gButton[MUSIC_OFF].getStatus() == BUTTON_SPRITE_MOUSE_DOWN && !settings.music) {
+
 			settings.music = true;
 
-			Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
+			}
 
 			gButton[MUSIC_OFF].freeStatus();
 		}
-
 		//Ấn vào continue để chơi tiếp
 		if (gButton[CONTINUE_GAMEPLAY].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[CONTINUE_GAMEPLAY].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			return "continue";
 		}
@@ -399,8 +523,8 @@ std::string pause()
 		if (gButton[SAVE_AND_EXIT].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			isSaveData = true;
 			gButton[SAVE_AND_EXIT].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			SDL_Delay(500);
 			saveMatrix(data);
@@ -431,11 +555,14 @@ std::string win()
 			gButton[PLAY_AGAIN].handleEvent(&e);
 
 			gButton[EXIT].handleEvent(&e);
+
+			gButton[MAIN_MENU].handleEvent(&e);
 		}
 
 
 		gButton[PLAY_AGAIN].render(renderer);
 		gButton[EXIT].render(renderer);
+		gButton[MAIN_MENU].render(renderer);
 
 		renderTexture.loadFromRenderedText("You Win!", BLUE_COLOR, renderer, gFont);
 		renderTexture.render(25, 50, renderer);
@@ -443,8 +570,8 @@ std::string win()
 		//Ấn vào "Play Again" để chơi lại 
 		if (gButton[PLAY_AGAIN].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[PLAY_AGAIN].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			return "again";
 		}
@@ -452,13 +579,21 @@ std::string win()
 		//Ấn vào exit để thoát 
 		if (gButton[EXIT].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[EXIT].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			SDL_Delay(500);
 			return "quit";
 		}
 
+		if (gButton[MAIN_MENU].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
+			gButton[MAIN_MENU].freeStatus();
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
+			}
+			SDL_Delay(100);
+			return "menu";
+		}
 		SDL_RenderPresent(renderer);
 		//Dừng SDL 
 		SDL_Delay(1000 / FPS);
@@ -482,20 +617,23 @@ std::string lose()
 			gButton[PLAY_AGAIN].handleEvent(&e);
 
 			gButton[EXIT].handleEvent(&e);
+
+			gButton[MAIN_MENU].handleEvent(&e);
 		}
 
 
 		gButton[PLAY_AGAIN].render(renderer);
 		gButton[EXIT].render(renderer);
+		gButton[MAIN_MENU].render(renderer);
 
 		renderTexture.loadFromRenderedText("You Lose!", BLUE_COLOR, renderer, gFont);
 		renderTexture.render(25, 50, renderer);
-
+		
 		//Ấn vào "Play Again" để chơi lại 
 		if (gButton[PLAY_AGAIN].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[PLAY_AGAIN].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			return "again";
 		}
@@ -503,11 +641,20 @@ std::string lose()
 		//Ấn vào exit để thoát 
 		if (gButton[EXIT].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
 			gButton[EXIT].freeStatus();
-			if (settings.music) {
-				Mix_PlayChannel(-1, gMusic, 0);
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
 			}
 			SDL_Delay(500);
 			return "quit";
+		}
+
+		if (gButton[MAIN_MENU].getStatus() == BUTTON_SPRITE_MOUSE_DOWN) {
+			gButton[MAIN_MENU].freeStatus();
+			if (settings.sfx) {
+				Mix_PlayChannel(-1, gSFX, 0);
+			}
+			SDL_Delay(100);
+			return "menu";
 		}
 
 		SDL_RenderPresent(renderer);
