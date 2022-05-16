@@ -8,9 +8,10 @@
 
 -Hình ảnh em lấy trên mạng và cắt ghép
 
--Âm thanh em lấy ở:  https://www.chosic.com/download-audio/29771/
-                  
-                  :  https://www.chosic.com/download-audio/29514/
+-Âm thanh em lấy ở:
+https://www.chosic.com/download-audio/29771/
+
+https://www.chosic.com/download-audio/29514/
                    
 
 2. Cách chơi & luật chơi
