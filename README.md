@@ -4,6 +4,8 @@
 
 # 1. Giới thiệu
 
+-Ngôn ngữ: C++
+
 -Đồ họa em dùng là SDL2. Em học ở https://lazyfoo.net/tutorials/SDL/index.php
 
 -Hình ảnh em lấy trên mạng và cắt ghép
@@ -42,4 +44,4 @@ https://www.chosic.com/download-audio/29514/
 
 -Dự án này em hoàn toàn tự làm và không có sao chép ở bất kì đâu
 
--Link video test: https://youtu.be/tDV__1oGerc
+-Link video test: https://youtu.be/xqqdrCn1hMA
