@@ -4,6 +4,8 @@
 
 # 1. Giới thiệu
 
+-Ý tưởng: Từ game 2048 cổ điển
+
 -Ngôn ngữ: C++
 
 -Đồ họa em dùng là SDL2. Em học ở https://lazyfoo.net/tutorials/SDL/index.php
@@ -15,6 +17,11 @@ https://www.chosic.com/download-audio/29771/
 
 https://www.chosic.com/download-audio/29514/
                    
+-Cách cài đặt chương trình: Em code dự án này bằng visual studio 2019, do đó có 2 cách chạy chương trình: (Đảm bảo đã tải Visual studio 2019 hoặc hơn)
+
+  - Cách 1: Mở file x64/Debug/2048_Version_0.4.exe
+  - Cách 2: Mở file 2048_Version_0.4.sln và chạy chương trình trên Visual Studio 
+
 
 # 2. Cách chơi & luật chơi
 
@@ -36,12 +43,28 @@ https://www.chosic.com/download-audio/29514/
 
 -Để check xem người chơi còn có thể di chuyển được nữa hay không, trước tiên em check xem ma trận đã đầy hay chưa, nếu đầy rồi thì duyệt cả ma trận với từng cặp 2 ô liền kề nhau (ngang, dọc). Nếu duyệt cả bàn cờ mà không có 2 ô nào có giá trị bằng nhau thì người chơi thua.
 
-# 4. Nhận xét
+# 4. Các chức năng đã cài đặt:
 
--Đồ họa, âm thanh game tạm chấp nhận được 
+-Hình ảnh, nhạc, sound effect
 
--Em xin tự đánh giá dự án của mình được 9 điểm.
+-Save game
+
+-Pause game: ấn ESC trong lúc đang chơi để chuyển màn hình về trạng thái pause, trong màn hình pause ấn ESC lần nữa để trở về màn hình chính.
+
+-Game loop: Sau khi người chơi thắng/ thua, có thể chơi lại bằng cách ấn vào "Play Again"
+
+-Link video test: https://youtu.be/xqqdrCn1hMA
+
+# 5. Các kĩ thuật lập trình
+
+-Mảng, con trỏ, vector, string, enum, class 
+
+-SDL2: SDL2, SDL2_image, SDL2_ttf, SDL2_mixer
+
+# 6. Nhận xét
+
+-Đồ họa, âm thanh game khá ổn 
 
 -Dự án này em hoàn toàn tự làm và không có sao chép ở bất kì đâu
 
--Link video test: https://youtu.be/xqqdrCn1hMA
+-Hướng phát triển: Làm bảng xếp hạng, chơi nhiều người,...
