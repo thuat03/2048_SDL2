@@ -25,7 +25,7 @@ void setup() {
 	setupButton(gButton[MUSIC_OFF], "Music: Off", 50, 330, renderer, gFont);
 	setupButton(gButton[MAIN_MENU], "Main Menu", 50, 270, renderer, gFont);
 
-	setPositionOfPicture(picture);
+	setPositionOfPicture(RectPicture);
 
 	highscore = loadFile(HighScore);
 

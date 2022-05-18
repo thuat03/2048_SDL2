@@ -147,7 +147,7 @@ std::string main_menu()
 			}
 			SDL_RenderClear(renderer);
 
-			SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+			SDL_RenderCopy(renderer, gTexture[12], NULL, &RectPicture[17]);
 
 			gButton[START].handleEvent(&e);
 			gButton[EXIT].handleEvent(&e);
@@ -362,18 +362,18 @@ std::string game_play()
 		}
 
 
-		SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+		SDL_RenderCopy(renderer, gTexture[12], NULL, &RectPicture[17]);
 		//Văn bản chuẩn bị xuất hiện trên nền 
 		std::string currentscore = "Your score: " + std::to_string(score);
 		std::string _highscore = "High score: " + std::to_string(highscore);
 
 		//Hiển thị khung hình hiện tại 
 
-		SDL_RenderCopy(renderer, gTexture[0], NULL, &picture[0]);// Kết xuất hình ảnh nền
+		SDL_RenderCopy(renderer, gTexture[0], NULL, &RectPicture[0]);// Kết xuất hình ảnh nền
 
 		//Kết xuất từng ô một 
 
-		Render_Copy(renderer, gTexture, picture, data);
+		Render_Copy(renderer, gTexture, RectPicture, data);
 
 
 
@@ -414,7 +414,7 @@ std::string pause()
 					case SDLK_ESCAPE:
 					{
 						SDL_RenderClear(renderer);
-						SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+						SDL_RenderCopy(renderer, gTexture[12], NULL, &RectPicture[17]);
 						SDL_Delay(100);
 
 						if (settings.sfx) {
@@ -454,7 +454,7 @@ std::string pause()
 			}
 		}
 
-		SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+		SDL_RenderCopy(renderer, gTexture[12], NULL, &RectPicture[17]);
 
 		gButton[CONTINUE_GAMEPLAY].render(renderer);
 		gButton[SAVE_AND_EXIT].render(renderer);
@@ -550,7 +550,7 @@ std::string win()
 			
 			SDL_RenderClear(renderer);
 
-			SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+			SDL_RenderCopy(renderer, gTexture[12], NULL, &RectPicture[17]);
 
 			gButton[PLAY_AGAIN].handleEvent(&e);
 
@@ -612,7 +612,7 @@ std::string lose()
 
 			SDL_RenderClear(renderer);
 
-			SDL_RenderCopy(renderer, gTexture[12], NULL, &picture[17]);
+			SDL_RenderCopy(renderer, gTexture[12], NULL, &RectPicture[17]);
 
 			gButton[PLAY_AGAIN].handleEvent(&e);
 

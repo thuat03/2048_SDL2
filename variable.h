@@ -20,9 +20,9 @@ std::fstream CurrentScore("2048_Data/current score.txt");
 
 LTexture renderTexture;
 
-SDL_Texture* gTexture[13];
+SDL_Texture* gTexture[TOTAL_PICTURE];
 
-SDL_Rect picture[18];
+SDL_Rect RectPicture[TOTAL_RECT];
 
 LButton gButton[TOTAL_BUTTON];
 

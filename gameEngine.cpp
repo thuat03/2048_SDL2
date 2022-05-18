@@ -96,7 +96,7 @@ bool check_lose(int** data) {
 			if (data[j][i] != data[j + 1][i])n++;
 		}
 	}
-	if (n == 24)return true;
+	if (n == (SOHANG * (SOCOT - 1) * 2))return true;
 	return false;
 }
 

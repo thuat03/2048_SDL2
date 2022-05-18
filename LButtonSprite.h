@@ -4,6 +4,9 @@
 const int BUTTON_WIDTH = 175;
 const int BUTTON_HEIGHT = 50;
 
+//
+const int TOTAL_RECT = 18;
+const int TOTAL_PICTURE = 13;
 enum LButtonSprite
 {
 	BUTTON_SPRITE_MOUSE_OUT = 0,

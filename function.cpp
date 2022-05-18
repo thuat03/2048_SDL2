@@ -65,7 +65,7 @@ void setupButton(LButton& button, const std::string& title, const int& x, const 
 }
 
 void loadPicture(SDL_Texture** gTexture, SDL_Renderer*& renderer) {
-	//load picture for use
+	//load RectPicture for use
 	gTexture[0] = loadTexture("2048_Data/background.png", renderer);
 	gTexture[1] = loadTexture("2048_Data/2.png", renderer);
 	gTexture[2] = loadTexture("2048_Data/4.png", renderer);
@@ -148,75 +148,75 @@ void loadMusic(Mix_Music*& gMusic, const char* path) {
 	}
 }
 
-void setPositionOfPicture(SDL_Rect* picture) {
-	picture[0] = { 0,100,400,400 };
-	picture[1] = { 10,110,87,87 };
-	picture[2] = { 107,110,87,87 };
-	picture[3] = { 204,110,87,87 };
-	picture[4] = { 301,110,87,87 };
-	picture[5] = { 10,207,87,87 };
-	picture[6] = { 107,207,87,87 };
-	picture[7] = { 204,207,87,87 };
-	picture[8] = { 301,207,87,87 };
-	picture[9] = { 10,304,87,87 };
-	picture[10] = { 107,304,87,87 };
-	picture[11] = { 204,304,87,87 };
-	picture[12] = { 301,304,87,87 };
-	picture[13] = { 10,401,87,87 };
-	picture[14] = { 107,401,87,87 };
-	picture[15] = { 204,401,87,87 };
-	picture[16] = { 301,401,87,87 };
+void setPositionOfPicture(SDL_Rect* RectPicture) {
+	RectPicture[0] = { 0,100,400,400 };
+	RectPicture[1] = { 10,110,87,87 };
+	RectPicture[2] = { 107,110,87,87 };
+	RectPicture[3] = { 204,110,87,87 };
+	RectPicture[4] = { 301,110,87,87 };
+	RectPicture[5] = { 10,207,87,87 };
+	RectPicture[6] = { 107,207,87,87 };
+	RectPicture[7] = { 204,207,87,87 };
+	RectPicture[8] = { 301,207,87,87 };
+	RectPicture[9] = { 10,304,87,87 };
+	RectPicture[10] = { 107,304,87,87 };
+	RectPicture[11] = { 204,304,87,87 };
+	RectPicture[12] = { 301,304,87,87 };
+	RectPicture[13] = { 10,401,87,87 };
+	RectPicture[14] = { 107,401,87,87 };
+	RectPicture[15] = { 204,401,87,87 };
+	RectPicture[16] = { 301,401,87,87 };
 
 	//Background game.
-	picture[17] = { 0,0,400,500 };
+	RectPicture[17] = { 0,0,400,500 };
 }
 
-void Render_Copy(SDL_Renderer*& renderer, SDL_Texture** Texture, SDL_Rect* picture, int** matran) {
+void Render_Copy(SDL_Renderer*& renderer, SDL_Texture** Texture, SDL_Rect* RectPicture, int** matran) {
 	for (int i = 1; i <= 4; i++) {
 		for (int j = 1; j <= 4; j++) {
 			switch (matran[i - 1][j - 1]) {
 			case 2: {
-				SDL_RenderCopy(renderer, Texture[1], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[1], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 4: {
-				SDL_RenderCopy(renderer, Texture[2], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[2], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 8: {
-				SDL_RenderCopy(renderer, Texture[3], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[3], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 16: {
-				SDL_RenderCopy(renderer, Texture[4], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[4], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 32: {
-				SDL_RenderCopy(renderer, Texture[5], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[5], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 64: {
-				SDL_RenderCopy(renderer, Texture[6], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[6], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 128: {
-				SDL_RenderCopy(renderer, Texture[7], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[7], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 256: {
-				SDL_RenderCopy(renderer, Texture[8], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[8], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 512: {
-				SDL_RenderCopy(renderer, Texture[9], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[9], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 1024: {
-				SDL_RenderCopy(renderer, Texture[10], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[10], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			case 2048: {
-				SDL_RenderCopy(renderer, Texture[11], NULL, &picture[(i - 1) * 4 + j]);
+				SDL_RenderCopy(renderer, Texture[11], NULL, &RectPicture[(i - 1) * 4 + j]);
 				break;
 			}
 			}

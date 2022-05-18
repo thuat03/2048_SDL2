@@ -26,7 +26,7 @@ void loadMusic(Mix_Music*& gMusic, const char* path);
 
 void setPositionOfPicture(SDL_Rect* picure);
 
-void Render_Copy(SDL_Renderer*& renderer, SDL_Texture** Texture, SDL_Rect* picture, int** matran);
+void Render_Copy(SDL_Renderer*& renderer, SDL_Texture** Texture, SDL_Rect* RectPicture, int** matran);
 
 void freeButtons(LButton& button);
 
