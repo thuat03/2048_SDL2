@@ -79,7 +79,7 @@ void loadPicture(SDL_Texture** gTexture, SDL_Renderer*& renderer) {
 	gTexture[10] = loadTexture("2048_Data/1024.png", renderer);
 	gTexture[11] = loadTexture("2048_Data/2048.png", renderer);
 	gTexture[12] = loadTexture("2048_Data/background menu.jpg", renderer);
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i < TOTAL_PICTURE; i++) {
 		if (gTexture[i] == NULL) {
 			std::cout << "Unable to load image!" << SDL_GetError() << std::endl;
 		}
