@@ -19,7 +19,7 @@ https://www.chosic.com/download-audio/29514/
                    
 -Cách cài đặt chương trình: Em code dự án này bằng visual studio 2019, do đó có 2 cách chạy chương trình: (Đảm bảo đã tải Visual studio 2019 hoặc hơn)
 
-  - Cách 1: Mở file x64/Debug/2048_Version_0.4.exe
+  - Cách 1: Mở file 2048_Version_0.4.exe
   - Cách 2: Mở file 2048_Version_0.4.sln và chạy chương trình trên Visual Studio 
 
 
