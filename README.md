@@ -47,6 +47,8 @@ https://www.chosic.com/download-audio/29514/
 
 -Hình ảnh, nhạc, sound effect
 
+-High score
+
 -Save game
 
 -Pause game: ấn ESC trong lúc đang chơi để chuyển màn hình về trạng thái pause, trong màn hình pause ấn ESC lần nữa để trở về màn hình chính.
