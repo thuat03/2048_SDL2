@@ -59,7 +59,7 @@ https://www.chosic.com/download-audio/29514/
 
 # 5. Các kĩ thuật lập trình
 
--Mảng, con trỏ, vector, string, enum, class 
+-Mảng, con trỏ, vector, string, file, enum, class 
 
 -SDL2: SDL2, SDL2_image, SDL2_ttf, SDL2_mixer
 
