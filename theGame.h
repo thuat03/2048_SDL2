@@ -51,10 +51,9 @@ void TheGame::updateStatus() {
 
 	if (this->status_next == "continue_saveGame") {
 		if (this->status == MAIN_MENU_STATUS) {
-			
-
 			this->status = GAME_PLAY_STATUS;
 		}
+		return;
 	}
 
 	if (this->status_next == "win") {
