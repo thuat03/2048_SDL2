@@ -736,6 +736,7 @@ std::string game_play_multi()
 				if (settings.sfx) {
 					Mix_PlayChannel(-1, gSFX, 0);
 				}
+				Mix_HaltMusic();
 				return "menu";
 			}
 		}
