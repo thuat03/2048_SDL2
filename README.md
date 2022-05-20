@@ -55,7 +55,9 @@ https://www.chosic.com/download-audio/29514/
 
 -Game loop: Sau khi người chơi thắng/ thua, có thể chơi lại bằng cách ấn vào "Play Again"
 
--Link video test: https://youtu.be/xqqdrCn1hMA
+-Chơi đơn, chơi 2 người
+
+-Link video test: https://youtu.be/oX_40Ik4K_o
 
 # 5. Các kĩ thuật lập trình
 
