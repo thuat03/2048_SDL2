@@ -27,7 +27,9 @@ https://www.chosic.com/download-audio/29514/
 
 2.1 Cách chơi.
 
--Người chơi nhấn các phím W,A,S,D để di chuyển các ô số trên ma trận 4x4 để ghép 2 ô có giá trị giống nhau thành ô có giá trị gấp đôi
+-Người chơi 1 nhấn các phím W,A,S,D để di chuyển các ô số trên ma trận 4x4 để ghép 2 ô có giá trị giống nhau thành ô có giá trị gấp đôi
+
+-Người chơi 2 nhấn các phím mũi tên để di chuyển
 
 2.2 Luật chơi.
 
