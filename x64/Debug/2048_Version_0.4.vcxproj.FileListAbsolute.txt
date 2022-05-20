@@ -1,3 +1,4 @@
 C:\Users\BUI THE THUAT\Documents\Thuat.Visual Studio 2019\2048_Version_0.4\x64\Debug\2048_Version_0.4.exe
 C:\Users\BUI THE THUAT\Documents\GitHub\x64\Debug\2048_Version_0.4.exe
 C:\Users\BUI THE THUAT\source\repos\2048_SDL2\2048\x64\Debug\2048_Version_0.4.exe
+C:\Users\BUI THE THUAT\Documents\Thuat.Visual Studio 2019\2048\x64\Debug\2048_Version_0.4.exe

@@ -16,16 +16,16 @@
 #include"setup.h"
 #include"theGame.h"
 
-TheGame thegame;
+TheGame* thegame = new TheGame;
 int main(int argc, char** args) {
 	//set up SDL
 	setup();
 
 	//Game loop
-	thegame.render();
-	while (thegame.getStatusPresent() != EXIT_STATUS) {
-		thegame.updateStatus();
-		thegame.render();
+	thegame->render();
+	while (thegame->getStatusPresent() != EXIT_STATUS) {
+		thegame->updateStatus();
+		thegame->render();
 	}
 
 	//save data and quit SDL

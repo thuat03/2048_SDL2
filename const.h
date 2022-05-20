@@ -12,7 +12,7 @@ const SDL_Color BLACK_COLOR = { 0, 0, 0 };
 const SDL_Color GREEN_COLOR = { 0, 128, 0 };
 const SDL_Color DEFAULT_COLOR = BLACK_COLOR;
 
-const int SCREEN_WIDTH = 400;
+const int SCREEN_WIDTH = 900;
 const int SCREEN_HEIGHT = 500;
 
 const int FPS = 60;

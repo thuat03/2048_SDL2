@@ -149,76 +149,127 @@ void loadMusic(Mix_Music*& gMusic, const char* path) {
 }
 
 void setPositionOfPicture(SDL_Rect* RectPicture) {
-	RectPicture[0] = { 0,100,400,400 };
-	RectPicture[1] = { 10,110,87,87 };
-	RectPicture[2] = { 107,110,87,87 };
-	RectPicture[3] = { 204,110,87,87 };
-	RectPicture[4] = { 301,110,87,87 };
-	RectPicture[5] = { 10,207,87,87 };
-	RectPicture[6] = { 107,207,87,87 };
-	RectPicture[7] = { 204,207,87,87 };
-	RectPicture[8] = { 301,207,87,87 };
-	RectPicture[9] = { 10,304,87,87 };
-	RectPicture[10] = { 107,304,87,87 };
-	RectPicture[11] = { 204,304,87,87 };
-	RectPicture[12] = { 301,304,87,87 };
-	RectPicture[13] = { 10,401,87,87 };
-	RectPicture[14] = { 107,401,87,87 };
-	RectPicture[15] = { 204,401,87,87 };
-	RectPicture[16] = { 301,401,87,87 };
+	//Single player
+	RectPicture[0] = { 250,100,400,400 };
+	RectPicture[1] = { 260,110,87,87 };
+	RectPicture[2] = { 357,110,87,87 };
+	RectPicture[3] = { 454,110,87,87 };
+	RectPicture[4] = { 551,110,87,87 };
+	RectPicture[5] = { 260,207,87,87 };
+	RectPicture[6] = { 357,207,87,87 };
+	RectPicture[7] = { 454,207,87,87 };
+	RectPicture[8] = { 551,207,87,87 };
+	RectPicture[9] = { 260,304,87,87 };
+	RectPicture[10] = { 357,304,87,87 };
+	RectPicture[11] = { 454,304,87,87 };
+	RectPicture[12] = { 551,304,87,87 };
+	RectPicture[13] = { 260,401,87,87 };
+	RectPicture[14] = { 357,401,87,87 };
+	RectPicture[15] = { 454,401,87,87 };
+	RectPicture[16] = { 551,401,87,87 };
 
 	//Background game.
-	RectPicture[17] = { 0,0,400,500 };
+	RectPicture[17] = { 0,0,900,500 };
+
+	//Multiplayer
+
+	//Player 1
+	RectPicture[18] = { 0,100,400,400 };
+	RectPicture[19] = { 10,110,87,87 };
+	RectPicture[20] = { 107,110,87,87 };
+	RectPicture[21] = { 204,110,87,87 };
+	RectPicture[22] = { 301,110,87,87 };
+	RectPicture[23] = { 10,207,87,87 };
+	RectPicture[24] = { 107,207,87,87 };
+	RectPicture[25] = { 204,207,87,87 };
+	RectPicture[26] = { 301,207,87,87 };
+	RectPicture[27] = { 10,304,87,87 };
+	RectPicture[28] = { 107,304,87,87 };
+	RectPicture[29] = { 204,304,87,87 };
+	RectPicture[30] = { 301,304,87,87 };
+	RectPicture[31] = { 10,401,87,87 };
+	RectPicture[32] = { 107,401,87,87 };
+	RectPicture[33] = { 204,401,87,87 };
+	RectPicture[34] = { 301,401,87,87 };
+
+	//Player 2
+	RectPicture[35] = { 500,100,400,400 };
+	RectPicture[36] = { 510,110,87,87 };
+	RectPicture[37] = { 607,110,87,87 };
+	RectPicture[38] = { 704,110,87,87 };
+	RectPicture[39] = { 801,110,87,87 };
+	RectPicture[40] = { 510,207,87,87 };
+	RectPicture[41] = { 607,207,87,87 };
+	RectPicture[42] = { 704,207,87,87 };
+	RectPicture[43] = { 801,207,87,87 };
+	RectPicture[44] = { 510,304,87,87 };
+	RectPicture[45] = { 607,304,87,87 };
+	RectPicture[46] = { 704,304,87,87 };
+	RectPicture[47] = { 801,304,87,87 };
+	RectPicture[48] = { 510,401,87,87 };
+	RectPicture[49] = { 607,401,87,87 };
+	RectPicture[50] = { 704,401,87,87 };
+	RectPicture[51] = { 801,401,87,87 };
 }
 
-void Render_Copy(SDL_Renderer*& renderer, SDL_Texture** Texture, SDL_Rect* RectPicture, int** matran) {
+void Render_Copy(SDL_Renderer*& renderer, SDL_Texture** Texture, SDL_Rect* RectPicture, int** matran, const int& mode, const int& player) {
+	int add = 0;
+	if (mode == MULTI) {
+		if (player == PLAYER_1) {
+			add = 18;
+		}
+		else {
+			add = 35;
+		}
+	}
+
 	for (int i = 1; i <= 4; i++) {
 		for (int j = 1; j <= 4; j++) {
 			switch (matran[i - 1][j - 1]) {
-			case 2: {
-				SDL_RenderCopy(renderer, Texture[1], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 4: {
-				SDL_RenderCopy(renderer, Texture[2], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 8: {
-				SDL_RenderCopy(renderer, Texture[3], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 16: {
-				SDL_RenderCopy(renderer, Texture[4], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 32: {
-				SDL_RenderCopy(renderer, Texture[5], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 64: {
-				SDL_RenderCopy(renderer, Texture[6], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 128: {
-				SDL_RenderCopy(renderer, Texture[7], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 256: {
-				SDL_RenderCopy(renderer, Texture[8], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 512: {
-				SDL_RenderCopy(renderer, Texture[9], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 1024: {
-				SDL_RenderCopy(renderer, Texture[10], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
-			case 2048: {
-				SDL_RenderCopy(renderer, Texture[11], NULL, &RectPicture[(i - 1) * 4 + j]);
-				break;
-			}
+				case 2: {
+					SDL_RenderCopy(renderer, Texture[1], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 4: {
+					SDL_RenderCopy(renderer, Texture[2], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 8: {
+					SDL_RenderCopy(renderer, Texture[3], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 16: {
+					SDL_RenderCopy(renderer, Texture[4], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 32: {
+					SDL_RenderCopy(renderer, Texture[5], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 64: {
+					SDL_RenderCopy(renderer, Texture[6], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 128: {
+					SDL_RenderCopy(renderer, Texture[7], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 256: {
+					SDL_RenderCopy(renderer, Texture[8], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 512: {
+					SDL_RenderCopy(renderer, Texture[9], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 1024: {
+					SDL_RenderCopy(renderer, Texture[10], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
+				case 2048: {
+					SDL_RenderCopy(renderer, Texture[11], NULL, &RectPicture[(i - 1) * 4 + j + add]);
+					break;
+				}
 			}
 		}
 	}

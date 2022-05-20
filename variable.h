@@ -28,6 +28,8 @@ LButton gButton[TOTAL_BUTTON];
 
 
 int score = 0;
+int score_player1 = 0;
+int score_player2 = 0;
 
 int highscore = 0;
 
@@ -42,3 +44,10 @@ int** data_save = createData();
 int** data = createData();
 
 int** data_check = createData();
+
+int** data_player1 = createData();
+int** data_player2 = createData();
+int** data_check_player1 = createData();
+int** data_check_player2 = createData();
+
+int mode;

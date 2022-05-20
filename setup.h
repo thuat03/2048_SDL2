@@ -24,6 +24,9 @@ void setup() {
 	setupButton(gButton[MUSIC_ON], "Music: On", 50, 330, renderer, gFont);
 	setupButton(gButton[MUSIC_OFF], "Music: Off", 50, 330, renderer, gFont);
 	setupButton(gButton[MAIN_MENU], "Main Menu", 50, 270, renderer, gFont);
+	setupButton(gButton[SINGLE_PLAYER], "Single Player", 50, 150, renderer, gFont);
+	setupButton(gButton[MULTIPLAYER], "Multiplayer", 50, 250, renderer, gFont);
+	setupButton(gButton[MAIN_MENU_END_MULTI], "Main Menu", 350, 225, renderer, gFont);
 
 	setPositionOfPicture(RectPicture);
 
@@ -36,7 +39,10 @@ void quitSDL() {
 	deleteData(data);
 	deleteData(data_check);
 	deleteData(data_save);
-
+	deleteData(data_player1);
+	deleteData(data_player2);
+	deleteData(data_check_player1);
+	deleteData(data_check_player2);
 	//Lưu dữ liệu 
 	saveScore(highscore, "2048_Data/highscore.txt");
 
