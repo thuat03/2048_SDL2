@@ -4,6 +4,8 @@ void setup() {
 
 	init(window, renderer);
 
+	SDL_SetWindowIcon(window, icon);
+
 	loadFont(gFont);
 	
 	loadPicture(gTexture, renderer);
@@ -58,6 +60,8 @@ void quitSDL() {
 	Matrix.close();
 
 	CurrentScore.close();
+
+	SDL_FreeSurface(icon);
 	//Giải phóng các nút 
 
 	for (int i = 0; i < TOTAL_BUTTON; i++) {

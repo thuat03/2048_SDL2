@@ -22,6 +22,8 @@ LTexture renderTexture;
 
 SDL_Texture* gTexture[TOTAL_PICTURE];
 
+SDL_Surface* icon = IMG_Load("2048_Data/2048.png");
+
 SDL_Rect RectPicture[TOTAL_RECT];
 
 LButton gButton[TOTAL_BUTTON];

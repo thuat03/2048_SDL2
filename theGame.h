@@ -749,6 +749,7 @@ std::string game_play_multi()
 
 std::string pause()
 {
+	gButton[SAVE_AND_EXIT].freeStatus();
 	SDL_Event e;
 	while (1) {
 
