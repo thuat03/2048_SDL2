@@ -69,8 +69,8 @@ https://www.chosic.com/download-audio/29514/
 
 # 6. Nhận xét
 
--Đồ họa, âm thanh game khá ổn 
+-Đồ họa, âm thanh game tạm được 
 
 -Dự án này em hoàn toàn tự làm và không có sao chép ở bất kì đâu
 
--Hướng phát triển: Làm bảng xếp hạng, chơi nhiều người,...
+-Hướng phát triển: Làm bảng xếp hạng, chơi nhiều người, thêm độ khó, thêm thử thách,...
